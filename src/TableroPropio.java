@@ -26,29 +26,42 @@ public class TableroPropio {
     }
 
     public boolean colocar(@NotNull Barco barco, @NotNull Coordenada c, @NotNull TipoOrientacion o) {
+        assert o.equals(TipoOrientacion.HORIZONTAL) || o.equals(TipoOrientacion.VERTICAL):
+                String.format("Orientacion desconocida (orientacion=%s)", o);
         // Comprobar si todas las casillas que va a ocupar el barco son agua
-        Casilla[] casillas=new Casilla[barco.longitud()];
+        // 4) Todos los trozos del barco deben estar colocados dentro del tablero
+        Casilla[] casillasBarco=new Casilla[barco.longitud()];
         Coordenada aux=new Coordenada(c.getFila(), c.getColumna());
         for (int i = 0; i < barco.longitud(); i++) {
-            if (esCoordenada(aux))
-                casillas[i]=getCasilla(aux);
+            if (esCoordenada(aux))                          // 1) La coordenada debe ser válida
+                casillasBarco[i]=getCasilla(aux);
             else 
                 return false;
             if (o.equals(TipoOrientacion.HORIZONTAL))
                 aux.setFila((char)(aux.getFila()+1));
-            else if (o.equals(TipoOrientacion.VERTICAL))
+            else // VERTICAL
                 aux.setColumna(aux.getColumna()+1);
-            else {                                                                          // PROGRAMACIÓN DEFENSIVA
-                System.err.printf("Tipo de orientacion desconocida (orientacion=%s)\n", o);
-                System.exit(1);
-            }
         }
-        
-        if (!sonAgua(casillas)) {
+
+        // 2) No puede existir un barco en la misma posición
+        if (!sonAgua(casillasBarco)) {
             return false;
         }
+
         // TODO: 29/01/2024 3) No puede existir un barco contiguo al barco a colocar
-        // TODO: 29/01/2024 4) Todos los trozos del barco deben estar colocados dentro del tablero
+
+        Casilla casilla;
+        // Coordenada donde hay que colocar el barco
+        Coordenada posicion=new Coordenada(c.getFila(), c.getColumna());
+        for (int i = 0; i < barco.longitud(); i++) {
+            casilla = getCasilla(posicion);
+            casilla.colocarTrozo(barco.getTrozo(i));
+            if (o.equals(TipoOrientacion.HORIZONTAL))
+                posicion.setColumna(posicion.getColumna()+1);
+            else // VERTICAL
+                posicion.setFila((char) (posicion.getFila()+1));
+        }
+
         return true;
     }
     
@@ -64,5 +77,28 @@ public class TableroPropio {
         for (Casilla casilla : casillas)
             if (!casilla.esAgua()) return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        // Encabezado con números [columnas]
+        sb.append("  ");
+        for (int i = Coordenada.getMinColumna(); i < Coordenada.getMaxColumna(); i++) {
+            sb.append(String.format(" %d ", i));
+        }
+        sb.append(" \u2469 ");
+        sb.append("\n");
+
+        // Filas
+        for (char c = Coordenada.getMinFila(); c <= Coordenada.getMaxFila(); c++) {
+            sb.append(String.format("%c ", c));
+            for (int j = Coordenada.getMinColumna(); j <= Coordenada.getMaxColumna(); j++) {
+                sb.append(casillas[c - Coordenada.getMinFila()][j - Coordenada.getMinColumna()]);
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }

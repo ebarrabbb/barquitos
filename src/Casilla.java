@@ -14,6 +14,7 @@ public class Casilla {
     }
 
     public void colocarTrozo(@NotNull Trozo trozo) {
+        this.agua=false;
         this.trozo=trozo;
     }
 
@@ -31,6 +32,6 @@ public class Casilla {
 
     @Override
     public String toString() {
-        return "|" + (estaVacia() ? " " : (esAgua() ? "A" : trozo)) + "|";
+        return "|" + (estaVacia() ? " " : (esAgua() ? "\u25CB" : trozo)) + "|";
     }
 }

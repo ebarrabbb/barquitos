@@ -15,6 +15,6 @@ public class Trozo {
 
     @Override
     public String toString() {
-        return tocado ? "|T|" : "| |";
+        return tocado ? "T" : "\u25A0";
     }
 }

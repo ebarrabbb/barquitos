@@ -10,6 +10,12 @@ public class Barco {
         Arrays.fill(trozos, new Trozo());
     }
 
+    public Trozo getTrozo(int i) {
+        assert i>=0 && i<trozos.length:
+                String.format("El trozo %d no existe (longitud=%d)", i, trozos.length);
+        return trozos[i];
+    }
+
     public int longitud() {
         return trozos.length;
     }

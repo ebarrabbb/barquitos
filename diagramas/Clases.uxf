@@ -425,7 +425,7 @@ R9=CREAR BARCOS</panel_attributes>
       <x>693</x>
       <y>306</y>
       <w>153</w>
-      <h>117</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>style=autoresize
 bg=red
@@ -436,6 +436,7 @@ Barco
 -
 +Barco(longitud: int)
 +estaHundido(): boolean
++getTrozo(i: int): Trozo
 +longitud(): int
 +toString(): String</panel_attributes>
     <additional_attributes/>
@@ -449,7 +450,7 @@ Barco
       <h>243</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=red
+bg=#2E9AFE
 valign=center
 Coordenada
 -
@@ -473,8 +474,8 @@ _+esColumna(columna: int): boolean_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>945</x>
-      <y>450</y>
+      <x>954</x>
+      <y>720</y>
       <w>171</w>
       <h>171</h>
     </coordinates>
@@ -498,8 +499,8 @@ Casilla
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1143</x>
-      <y>450</y>
+      <x>1152</x>
+      <y>720</y>
       <w>162</w>
       <h>45</h>
     </coordinates>
@@ -512,13 +513,13 @@ No es agua y no hay trozo</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1107</x>
-      <y>441</y>
+      <x>1116</x>
+      <y>711</y>
       <w>54</w>
-      <h>45</h>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>40.0;30.0;10.0;10.0</additional_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -666,7 +667,7 @@ Coordenada</panel_attributes>
       <h>189</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=red
+bg=#2E9AFE
 valign=center
 TableroPropio
 -
@@ -686,8 +687,8 @@ TableroPropio
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>981</x>
-      <y>702</y>
+      <x>972</x>
+      <y>972</y>
       <w>63</w>
       <h>45</h>
     </coordinates>
@@ -701,12 +702,12 @@ Formato
     <id>Relation</id>
     <coordinates>
       <x>927</x>
-      <y>702</y>
-      <w>72</w>
-      <h>99</h>
+      <y>882</y>
+      <w>63</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;90.0;60.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;50.0;110.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -717,7 +718,7 @@ Formato
       <h>81</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=red
+bg=#2E9AFE
 valign=center
 &lt;&lt;enum&gt;&gt;
 TipoOrientacion
@@ -729,32 +730,32 @@ TipoOrientacion
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>972</x>
-      <y>639</y>
+      <x>999</x>
+      <y>909</y>
       <w>306</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=red
+bg=#2E9AFE
 "|" + (estaVacia() ? " " : (esAgua() ? "A" : trozo)) + "|"</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>945</x>
-      <y>612</y>
-      <w>45</w>
+      <x>954</x>
+      <y>882</y>
+      <w>63</w>
       <h>45</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;30.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;50.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1017</x>
-      <y>315</y>
+      <x>954</x>
+      <y>603</y>
       <w>405</w>
       <h>108</h>
     </coordinates>
@@ -772,11 +773,63 @@ colocar
     <id>Relation</id>
     <coordinates>
       <x>918</x>
-      <y>414</y>
-      <w>117</w>
-      <h>54</h>
+      <y>603</y>
+      <w>54</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;40.0</additional_attributes>
+    <additional_attributes>40.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>954</x>
+      <y>459</y>
+      <w>108</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>style=autoresize
+bg=red
+toString
+tocado ? "T" : " "</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>918</x>
+      <y>504</y>
+      <w>54</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>954</x>
+      <y>513</y>
+      <w>243</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>style=autoresize
+bg=red
+toString
+Tablero en modo texto con coordenadas
+Letras para las filas
+Números para las columnas</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>927</x>
+      <y>414</y>
+      <w>45</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>30.0;50.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
