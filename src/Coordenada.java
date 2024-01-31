@@ -11,6 +11,11 @@ public class Coordenada {
         setColumna(columna);
     }
 
+    public static Coordenada generar() {
+        return new Coordenada(  (char) (Math.random()*(maxFila-minFila)+minFila),
+                                (int) (Math.random()*(maxColumna-minColumna)+minColumna)    );
+    }
+
     public char getFila() {
         return fila;
     }

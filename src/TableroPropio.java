@@ -37,6 +37,8 @@ public class TableroPropio {
                 casillasBarco[i]=getCasilla(aux);
             else 
                 return false;
+
+            // TODO: 31/01/2024 Controlar si la coordenada estará dentro del tablero antes de +1
             if (o.equals(TipoOrientacion.HORIZONTAL))
                 aux.setFila((char)(aux.getFila()+1));
             else // VERTICAL

@@ -1,12 +1,16 @@
 /**
  * Barquitos
  * @author Eduardo Barra Balao
- * @version 0.8.4
+ * @version 0.8.5
  */
 public class Principal {
     public static void main(String[] args) {
-        System.out.println("Barquitos 0.8.4");
-        // System.out.println(new Partida(new String[]{"PEDRO", "ZULEMA"}));
+        System.out.println("Barquitos 0.8.5");
+        Partida p1=new Partida(new String[]{"PEDRO", "ZULEMA"});
+        p1.jugar();
+    }
+
+    private static void pruebaColocarBarcos() {
         TableroPropio tp = new TableroPropio();
         System.out.print(tp);
         tp.colocar(new Barco(4), new Coordenada('A', 1), TipoOrientacion.VERTICAL);

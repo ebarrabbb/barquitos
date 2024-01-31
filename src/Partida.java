@@ -15,13 +15,9 @@ public class Partida {
                 String.format("El juego debe tener 2 jugadores (nº juhadores=%d)", apodos.length);
         setTurno(0);
 
-        // Crear tableros propios
-        tablerosPropios=new TableroPropio[2];
-        for (int i = 0; i < tablerosPropios.length; i++) {
-            tablerosPropios[i]=new TableroPropio();
-        }
+        crearTablerosPropios();
 
-        // Crear tableros propios
+        // Crear tableros enemigos
         tablerosEnemigos=new TableroEnemigo[2];
         for (int i = 0; i < tablerosEnemigos.length; i++) {
             tablerosEnemigos[i]=new TableroEnemigo();
@@ -47,6 +43,32 @@ public class Partida {
         for (int i = 0; i < flotas.length; i++) {
             flotas[i]=new Flota(new int[]{4,3,3,2,2,2,1,1,1,1});
         }
+    }
+
+    private void crearTablerosPropios() {
+        // Crear tableros propios
+        tablerosPropios=new TableroPropio[2];
+        for (int i = 0; i < tablerosPropios.length; i++) {
+            tablerosPropios[i]=new TableroPropio();
+        }
+    }
+
+    private void colocarFlotas() {
+        Coordenada c;
+        Barco[] barcos;
+        for (int i = 0; i < flotas.length; i++) {
+            barcos=flotas[i].getBarcos();
+            while (!tablerosPropios[i].colocar(barcos[0], c=Coordenada.generar(), TipoOrientacion.generar())) {
+                System.out.println(barcos[0]);
+                System.out.println(c);
+            }
+        }
+        for (int i = 0; i <=1; i++)
+            System.out.println(tablerosPropios[i]);
+    }
+
+    public void jugar() {
+        colocarFlotas();
     }
 
     @Override

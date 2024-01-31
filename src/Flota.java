@@ -12,6 +12,10 @@ public class Flota {
         }
     }
 
+    public Barco[] getBarcos() {
+        return barcos;
+    }
+
     @Override
     public String toString() {
         return "Flota{" +

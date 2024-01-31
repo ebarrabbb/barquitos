@@ -1,3 +1,7 @@
 public enum TipoOrientacion {
-    HORIZONTAL, VERTICAL
+    HORIZONTAL, VERTICAL;
+
+    public static TipoOrientacion generar() {
+        return values()[(int)(Math.random()*values().length)];
+    }
 }
