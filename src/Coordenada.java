@@ -1,8 +1,4 @@
 public class Coordenada {
-    private static char minFila='A';
-    private static char maxFila='J';
-    private static int minColumna=1;
-    private static int maxColumna=10;
     private char fila;                  // [minFila, maxFila]
     private int columna;                // [minColumna, maxColumna]
 
@@ -11,9 +7,8 @@ public class Coordenada {
         setColumna(columna);
     }
 
-    public static Coordenada generar() {
-        return new Coordenada(  (char) (Math.random()*(maxFila-minFila)+minFila),
-                                (int) (Math.random()*(maxColumna-minColumna)+minColumna)    );
+    public Coordenada clonar() {
+        return new Coordenada(fila, columna);
     }
 
     public char getFila() {
@@ -24,39 +19,41 @@ public class Coordenada {
         return columna;
     }
 
-    public static char getMinFila() {
-        return minFila;
+    public void decFila() {
+        setFila((char)(fila-1));
+    }
+    public void decFila(int n) {
+        setFila((char)(fila-n));
     }
 
-    public static char getMaxFila() {
-        return maxFila;
+    public void incFila() {
+        setFila((char)(fila+1));
+    }
+    public void incFila(int n) {
+        setFila((char)(fila+n));
     }
 
-    public static int getMinColumna() {
-        return minColumna;
+    public void decColumna() {
+        setColumna(columna-1);
     }
 
-    public static int getMaxColumna() {
-        return maxColumna;
+    public void decColumna(int n) {
+        setColumna(columna-n);
     }
 
-    public static boolean esFila(char fila) {
-        return minFila<=fila && fila<=maxFila;
+    public void incColumna() {
+        setColumna(columna+1);
     }
 
-    public static boolean esColumna(int columa) {
-        return minColumna<=columa && columa<=maxColumna;
+    public void incColumna(int n) {
+        setColumna(columna+n);
     }
 
     public void setFila(char fila) {
-        assert esFila(fila):
-                String.format("La fila %c no es válida [%c,%c]", fila, minFila, maxFila);
         this.fila = fila;
     }
 
     public void setColumna(int columna) {
-        assert esColumna(columna):
-                String.format("La columna %d no es válida [%d,%d]", columna, minColumna, maxColumna);
         this.columna = columna;
     }
 
