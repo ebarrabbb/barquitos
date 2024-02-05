@@ -34,20 +34,12 @@ public class TableroPropio {
         // 1) La coordenada debe ser válida
         // 2) No puede existir un barco en la misma posición
         // 4) Todos los trozos del barco deben estar colocados dentro del tablero
-        Casilla[] casillasBarco=new Casilla[barco.longitud()];
-        Coordenada[] coordenadasBarco=new Coordenada[barco.longitud()];
         Coordenada posicion=c.clonar();
         for (int i = 0; i < barco.longitud(); i++) {
             // 1) La coordenada debe ser válida
-            if (esCoordenada(posicion)) {
-                coordenadasBarco[i]=posicion;
-                Casilla casilla = getCasilla(posicion);
-                casillasBarco[i] = casilla;
-                // 2) No puede existir un barco en la misma posición
-                // (todas las casillas que va a ocupar el barco son agua)
-                if (!casilla.esAgua())
-                    return false;
-            } else
+            // 2) No puede existir un barco en la misma posición
+            // (todas las casillas que va a ocupar el barco son agua)
+            if (!esCasillaConAgua(posicion))
                 return false;
 
             if (o.equals(TipoOrientacion.HORIZONTAL)) {
@@ -63,19 +55,18 @@ public class TableroPropio {
             }
         }
 
-        // TODO: 29/01/2024 3) No puede existir un barco contiguo al barco a colocar
-        Casilla[] borde=new Casilla[(barco.longitud()+1)*2];
-
-        // Si la coordenada está fuera del tablero almacenamos null en vez de la casilla
         if (o.equals(TipoOrientacion.HORIZONTAL)) {
+            // TODO: 05/02/2024 Borrar
+            System.out.println("HORIZONTAL");
             // Mirar borde superior
             // Calcular la primera casilla del borde superior (arriba a la izquierda)
             Coordenada aux=c.clonar();
             aux.decFila();
             aux.decColumna();
             int i;
-            for (i=0;i < barco.longitud()+2 ; i++) {
-                borde[i]=esCoordenada(aux) ? getCasilla(aux) : null;
+            for (i=0;i<barco.longitud()+2 ; i++) {
+                if (!esCasillaConAgua(aux))
+                    return false;
                 aux.incColumna();
             }
             // Mirar borde inferior
@@ -84,17 +75,61 @@ public class TableroPropio {
             aux.incFila();
             aux.decColumna();
             for (; i < barco.longitud()+2 ; i++) {
-                borde[i]=esCoordenada(aux) ? getCasilla(aux) : null;
+                if (!esCasillaConAgua(aux))
+                    return false;
                 aux.incColumna();
             }
             // Mirar casilla a la izquierda
             aux=c.clonar();
             aux.decColumna();
-            borde[i++]=esCoordenada(aux) ? getCasilla(aux) : null;
+            if (!esCasillaConAgua(aux))
+                return false;
             // Mirar casilla a la derecha
             aux=c.clonar();
             aux.incColumna(barco.longitud());
-            borde[i++]=esCoordenada(aux) ? getCasilla(aux) : null;
+            if (!esCasillaConAgua(aux))
+                return false;
+        } else {    // VERTICAL
+            // TODO: 05/02/2024 Borrar
+            System.out.println("VERTICAL");
+
+            // Mirar borde superior
+            // Calcular la primera casilla del borde superior (arriba a la izquierda)
+            Coordenada aux=c.clonar();
+            aux.decFila();
+            aux.decColumna();
+            int i;
+            for (i=0; i<=2 ; i++) {
+                if (!esCasillaConAgua(aux))
+                    return false;
+                aux.incColumna();
+            }
+            // Mirar borde inferior
+            // Calcular la primera casilla del borde inferiro (abajo a la izquierda)
+            aux=c.clonar();
+            aux.incFila();
+            aux.decColumna();
+            for (i=0; i<=2; i++) {
+                if (!esCasillaConAgua(aux))
+                    return false;
+                aux.incColumna();
+            }
+            // Mirar borde izquierdo
+            aux=c.clonar();
+            aux.decColumna();
+            for (i=0; i<barco.longitud(); i++) {
+                if (!esCasillaConAgua(aux))
+                    return false;
+                aux.incFila();
+            }
+            // Mirar borde derecho
+            aux=c.clonar();
+            aux.incColumna();
+            for (i=0; i<barco.longitud(); i++) {
+                if (!esCasillaConAgua(aux))
+                    return false;
+                aux.incFila();
+            }
         }
 
         // Colocar barco en la coordenada c y con la orientación o
@@ -118,6 +153,10 @@ public class TableroPropio {
         }
 
         return true;
+    }
+
+    private boolean esCasillaConAgua(@NotNull Coordenada aux) {
+        return esCoordenada(aux) && getCasilla(aux).esAgua();
     }
 
     private boolean esCoordenada(@NotNull Coordenada c) {
@@ -155,6 +194,8 @@ public class TableroPropio {
     }
 
     private boolean sonAgua(@NotNull Casilla[] casillas) {
+        // TODO: 05/02/2024 Borrar
+        System.out.println(Arrays.toString(casillas));
         for (Casilla casilla : casillas)
             if (!casilla.esAgua()) return false;
         return true;

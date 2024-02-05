@@ -59,9 +59,11 @@ public class Partida {
         Barco[] barcos;
         for (int i = 0; i < flotas.length; i++) {
             barcos=flotas[i].getBarcos();
-            while (!tablerosPropios[i].colocar(barcos[0], c=TableroPropio.generar(), TipoOrientacion.generar())) {
-                System.out.println(barcos[0]);
-                System.out.println(c);
+            for (int j = 0; j < barcos.length; j++) {
+                while (!tablerosPropios[i].colocar(barcos[j], c = TableroPropio.generar(), TipoOrientacion.generar())) {
+                    System.out.println(barcos[j]);
+                    System.out.println(c);
+                }
             }
         }
         for (int i = 0; i <=1; i++)
@@ -69,8 +71,7 @@ public class Partida {
     }
 
     public void jugar() {
-        for (int i = 1; i <= 10; i++)
-            colocarFlotas();
+        colocarFlotas();
     }
 
     @Override

@@ -1,8 +1,10 @@
 public class Trozo {
     private boolean tocado;
+    private int n;              // Número del barco
 
-    public Trozo() {
+    public Trozo(int n) {
         this.tocado=false;
+        this.n=n;
     }
 
     public boolean estaTocado() {
@@ -15,6 +17,7 @@ public class Trozo {
 
     @Override
     public String toString() {
-        return tocado ? "T" : "\u25A0";
+        // return tocado ? "T" : "\u25A0";
+        return tocado ? "T" : String.valueOf(n);
     }
 }

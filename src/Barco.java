@@ -1,13 +1,15 @@
 import java.util.Arrays;
 
 public class Barco {
-    private Trozo[] trozos;    // <<R>>
+    private Trozo[] trozos;     // <<R>>
+    private int n;              // Número de barco en una flota
 
-    public Barco(int longitud) {
+    // TODO: 05/02/2024 n Número de barco en una flota
+    public Barco(int longitud, int n) {
         assert longitud>=1:
                 String.format("La longitud del barco debe ser >=1 (longitud=%d)", longitud);
         trozos=new Trozo[longitud];
-        Arrays.fill(trozos, new Trozo());
+        Arrays.fill(trozos, new Trozo(n));
     }
 
     public Trozo getTrozo(int i) {
