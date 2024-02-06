@@ -1,11 +1,11 @@
 /**
  * Barquitos
  * @author Eduardo Barra Balao
- * @version 0.8.7
+ * @version 0.8.8
  */
 public class Principal {
     public static void main(String[] args) {
-        System.out.println("Barquitos 0.8.7");
+        System.out.println("Barquitos 0.8.8");
         Partida p1=new Partida(new String[]{"PEDRO", "ZULEMA"});
         p1.jugar();
     }

@@ -53,18 +53,16 @@ public class Partida {
         }
     }
 
-    // TODO: 01/02/2024 Terminar colocar flotas 
     private void colocarFlotas() {
         Coordenada c;
         Barco[] barcos;
-        for (int i = 0; i < flotas.length; i++) {
+        for (int i = 0; i <flotas.length; i++) {
             barcos=flotas[i].getBarcos();
-            for (int j = 0; j < barcos.length; j++) {
+            for (int j=0; j<barcos.length; j++)
                 while (!tablerosPropios[i].colocar(barcos[j], c = TableroPropio.generar(), TipoOrientacion.generar())) {
                     System.out.println(barcos[j]);
                     System.out.println(c);
                 }
-            }
         }
         for (int i = 0; i <=1; i++)
             System.out.println(tablerosPropios[i]);

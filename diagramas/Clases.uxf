@@ -425,17 +425,17 @@ R9=CREAR BARCOS</panel_attributes>
     <coordinates>
       <x>632</x>
       <y>280</y>
-      <w>136</w>
+      <w>144</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=#2E9AFE
+bg=red
 valign=center
 Barco
 -
 -trozos: Trozo[] &lt;&lt;R&gt;&gt;
 -
-+Barco(longitud: int)
++Barco(longitud: int, n: int)
 +estaHundido(): boolean
 +getTrozo(i: int): Trozo
 +longitud(): int
@@ -451,7 +451,7 @@ Barco
       <h>208</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=red
+bg=#2E9AFE
 valign=center
 Coordenada
 -
@@ -587,26 +587,26 @@ TableroEnemigo
       <w>376</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>Barquitos 0.8.6
+    <panel_attributes>Barquitos 0.8.8
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>776</x>
+      <x>784</x>
       <y>280</y>
       <w>128</w>
       <h>104</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=#2E9AFE
+bg=red
 valign=center
 Trozo
 -
 -tocado: boolean
 -
-+Trozo()
++Trozo(n: int)
 +estaTocado(): boolean
 +tocar()
 +toString(): String</panel_attributes>
@@ -656,7 +656,7 @@ Coordenada</panel_attributes>
       <h>304</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=red
+bg=#2E9AFE
 valign=center
 TableroPropio
 -
@@ -742,7 +742,7 @@ bg=#F3F781
       <h>104</h>
     </coordinates>
     <panel_attributes>style=autoresize
-bg=red
+bg=#F3F781
 colocar
 1) La coordenada debe ser válida
 2) No puede existir un barco en la misma posición 
@@ -766,8 +766,8 @@ colocar
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>936</x>
-      <y>288</y>
+      <x>944</x>
+      <y>328</y>
       <w>96</w>
       <h>40</h>
     </coordinates>
@@ -807,13 +807,13 @@ Números para las columnas</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>896</x>
-      <y>280</y>
+      <x>904</x>
+      <y>336</y>
       <w>56</w>
-      <h>64</h>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>50.0;10.0;10.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -856,5 +856,53 @@ _+generar(): TipoOrientacion_</panel_attributes>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>30.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>944</x>
+      <y>248</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>style=autoresize
+bg=#F3F781
+n Número de barco</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>248</y>
+      <w>232</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>270.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>944</x>
+      <y>288</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>style=autoresize
+bg=#F3F781
+n Número de barco</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>904</x>
+      <y>296</y>
+      <w>56</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;40.0</additional_attributes>
   </element>
 </diagram>

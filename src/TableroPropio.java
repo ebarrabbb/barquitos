@@ -39,7 +39,9 @@ public class TableroPropio {
             // 1) La coordenada debe ser válida
             // 2) No puede existir un barco en la misma posición
             // (todas las casillas que va a ocupar el barco son agua)
-            if (!esCasillaConAgua(posicion))
+            if (!esCoordenada(posicion))
+                return false;
+            else if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                 return false;
 
             if (o.equals(TipoOrientacion.HORIZONTAL)) {
@@ -56,86 +58,81 @@ public class TableroPropio {
         }
 
         if (o.equals(TipoOrientacion.HORIZONTAL)) {
-            // TODO: 05/02/2024 Borrar
-            System.out.println("HORIZONTAL");
             // Mirar borde superior
             // Calcular la primera casilla del borde superior (arriba a la izquierda)
-            Coordenada aux=c.clonar();
-            aux.decFila();
-            aux.decColumna();
+            posicion=c.clonar();
+            posicion.decFila();
+            posicion.decColumna();
             int i;
             for (i=0;i<barco.longitud()+2 ; i++) {
-                if (!esCasillaConAgua(aux))
+                if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                     return false;
-                aux.incColumna();
+                posicion.incColumna();
             }
             // Mirar borde inferior
-            // Calcular la primera casilla del borde inferiro (abajo a la izquierda)
-            aux=c.clonar();
-            aux.incFila();
-            aux.decColumna();
-            for (; i < barco.longitud()+2 ; i++) {
-                if (!esCasillaConAgua(aux))
+            // Calcular la primera casilla del borde inferior (abajo a la izquierda)
+            posicion=c.clonar();
+            posicion.incFila();
+            posicion.decColumna();
+            for (i=0; i < barco.longitud()+2 ; i++) {
+                if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                     return false;
-                aux.incColumna();
+                posicion.incColumna();
             }
             // Mirar casilla a la izquierda
-            aux=c.clonar();
-            aux.decColumna();
-            if (!esCasillaConAgua(aux))
+            posicion=c.clonar();
+            posicion.decColumna();
+            if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                 return false;
             // Mirar casilla a la derecha
-            aux=c.clonar();
-            aux.incColumna(barco.longitud());
-            if (!esCasillaConAgua(aux))
+            posicion=c.clonar();
+            posicion.incColumna(barco.longitud());
+            if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                 return false;
         } else {    // VERTICAL
-            // TODO: 05/02/2024 Borrar
-            System.out.println("VERTICAL");
-
             // Mirar borde superior
             // Calcular la primera casilla del borde superior (arriba a la izquierda)
-            Coordenada aux=c.clonar();
-            aux.decFila();
-            aux.decColumna();
+            posicion=c.clonar();
+            posicion.decFila();
+            posicion.decColumna();
             int i;
             for (i=0; i<=2 ; i++) {
-                if (!esCasillaConAgua(aux))
+                if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                     return false;
-                aux.incColumna();
+                posicion.incColumna();
             }
             // Mirar borde inferior
             // Calcular la primera casilla del borde inferiro (abajo a la izquierda)
-            aux=c.clonar();
-            aux.incFila();
-            aux.decColumna();
+            posicion=c.clonar();
+            posicion.incFila(barco.longitud());
+            posicion.decColumna();
             for (i=0; i<=2; i++) {
-                if (!esCasillaConAgua(aux))
+                if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                     return false;
-                aux.incColumna();
+                posicion.incColumna();
             }
             // Mirar borde izquierdo
-            aux=c.clonar();
-            aux.decColumna();
+            posicion=c.clonar();
+            posicion.decColumna();
             for (i=0; i<barco.longitud(); i++) {
-                if (!esCasillaConAgua(aux))
+                if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                     return false;
-                aux.incFila();
+                posicion.incFila();
             }
             // Mirar borde derecho
-            aux=c.clonar();
-            aux.incColumna();
+            posicion=c.clonar();
+            posicion.incColumna();
             for (i=0; i<barco.longitud(); i++) {
-                if (!esCasillaConAgua(aux))
+                if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
                     return false;
-                aux.incFila();
+                posicion.incFila();
             }
         }
 
         // Colocar barco en la coordenada c y con la orientación o
         Casilla casilla;
         // Coordenada donde hay que colocar el barco
-        posicion=new Coordenada(c.getFila(), c.getColumna());
+        posicion=c.clonar();
         for (int i = 0; i < barco.longitud(); i++) {
             casilla = getCasilla(posicion);
             casilla.colocarTrozo(barco.getTrozo(i));
@@ -155,9 +152,9 @@ public class TableroPropio {
         return true;
     }
 
-    private boolean esCasillaConAgua(@NotNull Coordenada aux) {
-        return esCoordenada(aux) && getCasilla(aux).esAgua();
-    }
+//    private boolean esCasillaConAgua(@NotNull Coordenada c) {
+//        return esCoordenada(c) && getCasilla(c).esAgua();
+//    }
 
     private boolean esCoordenada(@NotNull Coordenada c) {
         return esFila(c.getFila()) && esColumna(c.getColumna());
@@ -194,8 +191,6 @@ public class TableroPropio {
     }
 
     private boolean sonAgua(@NotNull Casilla[] casillas) {
-        // TODO: 05/02/2024 Borrar
-        System.out.println(Arrays.toString(casillas));
         for (Casilla casilla : casillas)
             if (!casilla.esAgua()) return false;
         return true;
