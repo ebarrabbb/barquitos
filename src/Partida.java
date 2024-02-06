@@ -59,10 +59,7 @@ public class Partida {
         for (int i = 0; i <flotas.length; i++) {
             barcos=flotas[i].getBarcos();
             for (int j=0; j<barcos.length; j++)
-                while (!tablerosPropios[i].colocar(barcos[j], c = TableroPropio.generar(), TipoOrientacion.generar())) {
-                    System.out.println(barcos[j]);
-                    System.out.println(c);
-                }
+                while (!tablerosPropios[i].colocar(barcos[j], c = TableroPropio.generar(), TipoOrientacion.generar()));
         }
         for (int i = 0; i <=1; i++)
             System.out.println(tablerosPropios[i]);

@@ -1,7 +1,5 @@
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
-
 public class TableroPropio {
     private static char minFila='A';
     private static char maxFila='J';
@@ -41,7 +39,7 @@ public class TableroPropio {
             // (todas las casillas que va a ocupar el barco son agua)
             if (!esCoordenada(posicion))
                 return false;
-            else if (esCoordenada(posicion) && !getCasilla(posicion).esAgua())
+            else if (!getCasilla(posicion).esAgua())        // Es coordenada y no es agua
                 return false;
 
             if (o.equals(TipoOrientacion.HORIZONTAL)) {
@@ -152,10 +150,6 @@ public class TableroPropio {
         return true;
     }
 
-//    private boolean esCasillaConAgua(@NotNull Coordenada c) {
-//        return esCoordenada(c) && getCasilla(c).esAgua();
-//    }
-
     private boolean esCoordenada(@NotNull Coordenada c) {
         return esFila(c.getFila()) && esColumna(c.getColumna());
     }
@@ -205,7 +199,7 @@ public class TableroPropio {
         for (int i = getMinColumna(); i < getMaxColumna(); i++) {
             sb.append(String.format(" %d ", i));
         }
-        sb.append(" \u2469 ");
+        sb.append(" \u2469 ");      // Número 10 en un sólo carácter (10)
         sb.append("\n");
 
         // Filas
